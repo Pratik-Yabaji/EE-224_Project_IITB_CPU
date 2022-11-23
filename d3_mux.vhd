@@ -13,7 +13,7 @@ entity d3_mux is
 
         reg_d3 : out std_logic_vector(15 downto 0);
     );
-end entity;
+end d3_mux;
 
 architecture bhave of d3_mux is
     begin

@@ -16,7 +16,7 @@ entity alu_ip_mux is
         alu_b_ip : out std_logic_vector(15 downto 0);
         alu_ir_ip : out std_logic_vector(2 downto 0);
     );
-end entity;
+end alu_ip_mux;
 
 architecture bhave of alu_ip_mux is
 

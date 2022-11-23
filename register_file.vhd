@@ -15,7 +15,7 @@ entity register_file is
         reg_d2 : out std_logic_vector(15 downto 0);
         
     );
-end entity;
+end register_file;
 
 architecture bhave of register_file is
 type mem_array is array (0 to 7 ) of std_logic_vector (15 downto 0);

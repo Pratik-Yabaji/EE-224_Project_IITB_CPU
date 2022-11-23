@@ -12,7 +12,7 @@ entity register_control_file is
         clock  : in  std_logic;
         current_state  : in std_logic_vector(5 downto 0);
     );
-end entity;
+end register_control_file;
 
 architecture bhave of register_control_file is
 

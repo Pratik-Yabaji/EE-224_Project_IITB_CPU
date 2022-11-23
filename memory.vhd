@@ -6,7 +6,7 @@ entity memory is
     port(
         t3_addr : in std_logic_vector(15 downto 0);
         t2_data : in std_logic_vector(15 downto 0);
-        t1_add : in std_logic_vector(15 downto 0);
+        t1_addr : in std_logic_vector(15 downto 0);
         t1_data : out std_logic_vector(15 downto 0);
 	    ir_addr: in std_logic_vector(15 downto 0);        
         ir_data: out std_logic_vector(15 downto 0);
@@ -15,7 +15,7 @@ entity memory is
         clock : in std_logic;
         current_state : in std_logic_vector(5 downto 0);
     );
-end entity;
+end memory;
 
 architecture bhave of memeory is
     type mem_array is array (0 to 31 ) of std_logic_vector (15 downto 0);

@@ -7,7 +7,7 @@ entity bit_1_shifter is
           current_state : in std_logic_vector(5 downto 0);
           shift_op_7 : out std_logic_vector(15 downto 0);
           );
-end entity;
+end bit_1_shifter;
 
 architecture bhv of bit_1_shifter is
     begin

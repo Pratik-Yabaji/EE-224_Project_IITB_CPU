@@ -12,7 +12,7 @@ entity ir is
         shift_ip_7 : out std_logic_vector(15 downto 0);
         se_ip_10 : out std_logic_vector(8 downto 0);
         );
-end entity;
+end ir;
 
 architecture bhave of ir is
 

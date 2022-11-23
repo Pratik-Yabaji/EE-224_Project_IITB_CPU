@@ -12,7 +12,7 @@ entity pc is
         current_state : in std_logic_vector(5 downto 0);
         clock : in std_logic;
     )
-end entity;
+end pc;
 
 architecture bhave of pc is
     signal pc: std_logic_vector(15 downto 0) := x"0000";

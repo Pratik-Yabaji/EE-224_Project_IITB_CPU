@@ -9,7 +9,7 @@ entity t3 is
 
         t3_op : out std_logic_vector(15 downto 0);
     );
-end entity;
+end t3;
 
 architecture bhave of t3 is
     begin
