@@ -3,18 +3,18 @@ use ieee.std_logic_1164.all;
 
 entity DUT is
     port (input_vector : in std_logic_vector(0 downto 0);
-        output_vector: out std_logic_vector(7 downto 0)
+          output_vector: out std_logic_vector(7 downto 0)
         );
 end entity;
 
 architecture DutWrap of DUT is
     signal current_state: std_logic_vector(5 downto 0 ):="000001";
-	signal next_state: std_logic_vector(5 downto 0 ):="000001";
+	 signal next_state: std_logic_vector(5 downto 0 ):="000001";
     signal current_ir,se_10_op, t1_op,ir_mem_data, t2_op, t3_op, pc_mem,s_op_7, reg_d3_s, alu_a_ip,alu_b_ip,reg_d1,reg_d2,data_out,t3_ip,ir_data, alu_pc, reg_out_d1:std_logic_vector(15 downto 0 );
     signal alu_ir: std_logic_vector(1 downto 0);
     signal clock: std_logic;
-	signal reset: std_logic;
-    signal carry, zero: std_logic;
+	 signal reset: std_logic:='0';
+    signal carry, zero: std_logic:='0';
     signal se_10: std_logic_vector(5 downto 0); 
 	 signal s_ip_7: std_logic_vector(8 downto 0);
     signal reg_a1,reg_a2,reg_a3 :std_logic_vector(2 downto 0);
@@ -187,6 +187,7 @@ end component;
 
 begin
     output_vector(5 downto 0) <= current_state;
+    -- output_vector(5 downto 0) <= "000001";
     output_vector(6) <= carry;
     output_vector(7) <= zero;
 

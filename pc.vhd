@@ -23,9 +23,9 @@ architecture bhave of pc is
                 when "000001" =>
                     pc_mem <= pc;
                     alu_out <= pc;
-                when "100001" ! "100000" =>
+                when "100001"  |  "100000" =>
                     alu_out <=pc;
-                when "100010" ! "100011" =>
+                when "100010"  |  "100011" =>
                     reg_out_d1<=pc;
                 when others =>
                     null;
@@ -36,7 +36,7 @@ architecture bhave of pc is
         begin
             if (falling_edge(clock)) then
                 case  current_state is
-                    when "000001" ! "100000" ! "100101"  =>
+                    when "000001"  |  "100000"  |  "100101"  =>
                         pc <= alu_in;
                     when "100011" =>
                         pc <= reg_in_d2;
