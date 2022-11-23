@@ -7,7 +7,7 @@ entity t1 is
         current_state : in std_logic_vector(5 downto 0);
         reg_d1_ip : in std_logic_vector(15 downto 0);
 
-        t1_op : out std_logic_vector(15 downto 0);
+        t1_op : out std_logic_vector(15 downto 0)
     );
 end t1;
 

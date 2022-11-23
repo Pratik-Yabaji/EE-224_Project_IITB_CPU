@@ -11,7 +11,7 @@ entity d3_mux is
         pc : in std_logic_vector(15 downto 0);
         shift_op_7 : in std_logic_vector(15 downto 0);
 
-        reg_d3 : out std_logic_vector(15 downto 0);
+        reg_d3 : out std_logic_vector(15 downto 0)
     );
 end d3_mux;
 
@@ -24,7 +24,7 @@ architecture bhave of d3_mux is
                     reg_d3 <= t3;
                 when "001010" => --s10
                     reg_d3 <= t1;
-                when ("0001101" or "001110" or "001111" or "010000" or "010001" or "010010" or "010100" or "010101")=> --s13 14 15 16 17 18 20 21
+                when ("001101" or "001110" or "001111" or "010000" or "010001" or "010010" or "010100" or "010101")=> --s13 14 15 16 17 18 20 21
                     reg_d3 <= t2;
                 when "001000" => --s8
                     reg_d3 <= shift_op_7;

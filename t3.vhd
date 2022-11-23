@@ -7,7 +7,7 @@ entity t3 is
         current_state : in std_logic_vector(5 downto 0);
         alu_out : in std_logic_vector(15 downto 0);
 
-        t3_op : out std_logic_vector(15 downto 0);
+        t3_op : out std_logic_vector(15 downto 0)
     );
 end t3;
 

@@ -10,7 +10,7 @@ entity register_control_file is
         reg_a3 : out std_logic_vector(2 downto 0);
 
         clock  : in  std_logic;
-        current_state  : in std_logic_vector(5 downto 0);
+        current_state  : in std_logic_vector(5 downto 0)
     );
 end register_control_file;
 
@@ -23,7 +23,7 @@ begin
             when ("000010" or "100011")=> -- s2 -- s35
                 reg_a1 <= ir(11 downto 9);
                 reg_a2 <= ir(8 downto 6);
-            when "0010111" => --s23
+            when "010111" => --s23
                 reg_a2 <= "000";
             when "011000" => --s24
                 reg_a2 <= "001";
@@ -51,7 +51,7 @@ begin
                 reg_a3 <= ir(5 downto 3);
             when ("001000" or "001010" or "100010") => -- s8 --s10 --s34
                 reg_a3 <= ir(11 downto 9);
-            when "0001101" => --s13
+            when "001101" => --s13
                 reg_a3 <= "000";
             when "001110" => --s14
                 reg_a3 <= "001";

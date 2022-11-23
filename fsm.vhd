@@ -10,7 +10,9 @@ entity ir_setter is
 end ir_setter;
 
 architecture bhave of ir_setter is
-    begin
+begin
+clock_proc:process(clock,reset)
+	begin
         if (clock='1' and clock' event) then
             if(reset = '1') then
                 current_state <= "000000";
@@ -32,9 +34,8 @@ entity ir_decoder is
             op_code: in std_logic_vector(3 downto 0);
             cz: in std_logic_vector(1 downto 0);
             imm: in std_logic_vector(8 downto 0);
-            op_out: out std_logic_vector(3 downto 0);
             carry: in std_logic;
-            zero: in std_logic;
+            zero: in std_logic
             );
     end ir_decoder;
 
@@ -60,15 +61,15 @@ architecture bhave of ir_decoder is
                 when "000010" => --s2
                     if(op_code = "0000") then
                         next_state <= "000011"; --s3
-                    elsif(op_code = "0001")
+                    elsif(op_code = "0001") then 
                         next_state <= "000101"; --s5
-                    elsif(op_code = "0010")
+                    elsif(op_code = "0010") then
                         next_state <= "000111"; --s7
-                    elsif(op_code = "0110")
-                        if(imm(0) or imm(1) or imm(2) or imm(3) or imm(4) or imm(5) or imm(6) or imm(7) = '1') then
+                    elsif(op_code = "0110") then
+                        if((imm(0) or imm(1) or imm(2) or imm(3) or imm(4) or imm(5) or imm(6) or imm(7)) = '1') then
                             next_state <= "001100"; --s12
                         end if;
-                    elsif(op_code = "0111")
+                    elsif(op_code = "0111") then
                         if(imm(0) = '1') then
                             next_state <= "010111"; --s23
                         elsif(imm(1) = '1') then
@@ -159,7 +160,7 @@ architecture bhave of ir_decoder is
                         next_state <= "010101"; -- s21
                     end if;
 
-                when "001101" or "001110" or "001111" or "010000" or "010001" or "010010" or "010100" or "010110" => --s13 to 20 (exclude s19) and 22
+                when "001101" ! "001110" ! "001111" ! "010000" ! "010001" ! "010010" ! "010100" ! "010110" => --s13 to 20 (exclude s19) and 22
                     next_state <= "010011";--s19
                 
                 when "010011" => --s19
@@ -168,21 +169,28 @@ architecture bhave of ir_decoder is
                 when "010101" => --s21
                     next_state <= "000001";--s1
 
-                when "010111" or "011000" or "011001" or "011010" or "011011" or "011100" or "011101" or "011110" => --s23 to 30 --> s22
+                when "010111" ! "011000" ! "011001" ! "011010" ! "011011" ! "011100" ! "011101" ! "011110" => --s23 to 30 --> s22
                     next_state <= "010110"; --s22
                     
                 when "011111" => --s31
                     if (cz(0)='1') then 
                         next_state <= "100000"; --s32
-                when "010101" => --s32
+							end if;
+							
+                when "100000" => --s32
                     if(op_code = "1100") then
                         next_state <= "100001"; -- s33
                     elsif(op_code = "1000") then
                         next_state <= "000001"; -- s1
+							end if;
+				when "100001" => --s33
+                    next_state <= "000001"; --s1
                 when "100010" => --s34
                     next_state <= "100000"; -- s32
                 when "100011" => --s35
                     next_state <= "000001"; --s1
+				when others =>
+					null;
             end case;
         end process;
     end bhave;

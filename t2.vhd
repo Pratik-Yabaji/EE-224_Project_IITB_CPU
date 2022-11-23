@@ -8,7 +8,7 @@ entity t2 is
         reg_d2_ip : in std_logic_vector(15 downto 0);
         memory_data : in std_logic_vector(15 downto 0);
 
-        t2_op : out std_logic_vector(15 downto 0);
+        t2_op : out std_logic_vector(15 downto 0)
     );
 end t2;
 

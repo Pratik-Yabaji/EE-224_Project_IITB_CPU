@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 entity alu_ip_mux is
     port(
-        current_state : in std_logic_vector(15 downto 0); -- Selector
+        current_state : in std_logic_vector(5 downto 0); -- Selector
 
         t1 : in std_logic_vector(15 downto 0); 
         t2 : in std_logic_vector(15 downto 0);
@@ -14,7 +14,7 @@ entity alu_ip_mux is
 
         alu_a_ip : out std_logic_vector(15 downto 0);
         alu_b_ip : out std_logic_vector(15 downto 0);
-        alu_ir_ip : out std_logic_vector(2 downto 0);
+        alu_ir_ip : out std_logic_vector(1 downto 0)
     );
 end alu_ip_mux;
 
@@ -62,5 +62,5 @@ begin
             when others =>
                 null;
         end case;
-
+	end process;
 end bhave;
