@@ -29,7 +29,7 @@ architecture bhave of ir is
     read_proc: process(clock)
         begin
             case current_state is
-                when ("000101" or "100000") => --s5 --s32
+                when "000101" | "100000" => --s5 --s32
                     se_ip_10 <= ir_mem_data(5 downto 0);
                 when "001000" => --s8
                     shift_ip_7 <= ir_mem_data(8 downto 0);

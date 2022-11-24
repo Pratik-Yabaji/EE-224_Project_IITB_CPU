@@ -49,6 +49,8 @@ begin
         case current_state is
             when "000100" => -- s4
                 reg_a3 <= ir(5 downto 3);
+				when "000110" => -- s6
+                reg_a3 <= ir(8 downto 6);
             when "001000" | "001010" | "100010" => -- s8 --s10 --s34
                 reg_a3 <= ir(11 downto 9);
             when "001101" => --s13

@@ -17,7 +17,7 @@ architecture bhv of sign_10_extender is
         begin
             if (current_state = "000101" or current_state = "100000") then -- s5 s32
                 temp := to_integer(unsigned(se_ip_10));
-                se_op_10 <= std_logic_vector(to_signed(temp,16));
+                se_op_10 <= std_logic_vector(to_unsigned(temp,16));
             end if;
         end process;
 end bhv;

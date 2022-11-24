@@ -22,7 +22,7 @@ architecture bhave of d3_mux is
         begin
 		  if (falling_edge(clock)) then
             case current_state is
-                when "000100" => --s4
+                when "000100" | "000110" => --s4 --s6
                     reg_d3 <= t3;
                     -- reg_d3 <= "0000000011111111";
                 when "001010" => --s10
