@@ -4,6 +4,7 @@ use ieee.numeric_std.all;
 
 entity t1 is
     port(
+        clock: in std_logic;
         current_state : in std_logic_vector(5 downto 0);
         reg_d1_ip : in std_logic_vector(15 downto 0);
 
@@ -13,7 +14,7 @@ end t1;
 
 architecture bhave of t1 is
     begin
-        t1_proc:process(current_state)
+        t1_proc:process(reg_d1_ip,clock,current_state)
         begin
             t1_op <= reg_d1_ip;
         end process;

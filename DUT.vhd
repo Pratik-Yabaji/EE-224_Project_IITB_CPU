@@ -56,7 +56,6 @@ architecture DutWrap of DUT is
                 t3_addr : in std_logic_vector(15 downto 0);
                 t2_data : in std_logic_vector(15 downto 0);
                 t1_addr : in std_logic_vector(15 downto 0);
-                -- t1_data : out std_logic_vector(15 downto 0);
                 ir_addr: in std_logic_vector(15 downto 0);        
                 ir_data: out std_logic_vector(15 downto 0);
                 data_out: out std_logic_vector(15 downto 0);
@@ -68,11 +67,12 @@ architecture DutWrap of DUT is
 
     component register_file is
             port(
+			    clock  : in  std_logic;
                 reg_a1 : in std_logic_vector(2 downto 0);
                 reg_a2 : in std_logic_vector(2 downto 0);
                 reg_a3 : in std_logic_vector(2 downto 0);
                 reg_d3 : in std_logic_vector(15 downto 0);
-                clock  : in std_logic;
+                current_state : in std_logic_vector(5 downto 0);
         
                 reg_d1 : out std_logic_vector(15 downto 0);
                 reg_d2 : out std_logic_vector(15 downto 0)
@@ -113,6 +113,7 @@ architecture DutWrap of DUT is
 
     component t1 is
             port(
+					clock : in std_logic;
                 current_state : in std_logic_vector(5 downto 0);
                 reg_d1_ip : in std_logic_vector(15 downto 0);
         
@@ -141,6 +142,7 @@ architecture DutWrap of DUT is
     
     component d3_mux is
             port(
+					 clock  : in std_logic;
                 current_state : in std_logic_vector(5 downto 0);
                 t1 : in std_logic_vector(15 downto 0);
                 t2 : in std_logic_vector(15 downto 0);
@@ -226,11 +228,12 @@ begin
 
     ins_register_file:register_file
         port map(
+		      clock  => input_vector(0),
             reg_a1 => reg_a1,
             reg_a2 => reg_a2,
             reg_a3 => reg_a3,
             reg_d3 => reg_d3_s,
-            clock  => input_vector(0),
+            current_state => current_state,
 
             reg_d1 => reg_d1,
             reg_d2 => reg_d2
@@ -249,6 +252,7 @@ begin
 
     ins_t1:t1
         port map(
+				clock => input_vector(0),
             current_state => current_state ,
             reg_d1_ip => reg_d1,
 
@@ -325,6 +329,7 @@ begin
     
     ins_d3_mux: d3_mux
         port map(
+				clock  => input_vector(0),
             current_state => current_state,
             t1 => t1_op,
             t2 => t2_op,

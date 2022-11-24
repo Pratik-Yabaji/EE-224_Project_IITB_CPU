@@ -17,10 +17,10 @@ end register_control_file;
 architecture bhave of register_control_file is
 
 begin
-    register_control_file_proc_a1_and_a2:process(current_state)
+    register_control_file_proc_a1_and_a2:process(current_state, ir)
     begin
         case current_state is
-            when ("000010" or "100011")=> -- s2 -- s35
+            when "000010" | "100011"=> -- s2 -- s35
                 reg_a1 <= ir(11 downto 9);
                 reg_a2 <= ir(8 downto 6);
             when "010111" => --s23
@@ -44,12 +44,12 @@ begin
         end case;
     end process;
 
-    register_control_file_proc_a3:process(current_state)
+    register_control_file_proc_a3:process(current_state,ir)
     begin
         case current_state is
             when "000100" => -- s4
                 reg_a3 <= ir(5 downto 3);
-            when ("001000" or "001010" or "100010") => -- s8 --s10 --s34
+            when "001000" | "001010" | "100010" => -- s8 --s10 --s34
                 reg_a3 <= ir(11 downto 9);
             when "001101" => --s13
                 reg_a3 <= "000";

@@ -30,6 +30,7 @@ alu_proc:process(alu_a, alu_b,alu_ir)
 begin
     if (alu_ir = "00") then
         alu_out <= alu_a + alu_b;
+        -- alu_out <= "0000000011111111";
 		  temp_out <= alu_a + alu_b;
         -- Modifying Carry flag
             if (((alu_a(15) and alu_b(15)) or 
