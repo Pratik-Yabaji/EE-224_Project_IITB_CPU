@@ -10,12 +10,16 @@ entity ir_setter is
 end ir_setter;
 
 architecture bhave of ir_setter is
+    signal i:integer := 0;
 begin
 clock_proc:process(clock,reset)
 	begin
         if (clock='1' and clock' event) then
             if(reset = '1') then
                 current_state <= "000000";
+            elsif(i = 0) then
+                current_state <= "000001";
+                i <= i + 1;
             else
                 current_state <= next_state;
             end if;
@@ -29,8 +33,8 @@ use ieee.numeric_std.all;
 
 entity ir_decoder is
     port(
-            next_state: out std_logic_vector(5 downto 0);
             current_state: in std_logic_vector(5 downto 0);
+            next_state: out std_logic_vector(5 downto 0);
             op_code: in std_logic_vector(3 downto 0);
             cz: in std_logic_vector(1 downto 0);
             imm: in std_logic_vector(8 downto 0);
@@ -55,7 +59,7 @@ architecture bhave of ir_decoder is
                     elsif(op_code = "1000") then
                         next_state <= "100010";--s34
                     else
-                        next_state <="000010"; --s2
+                        next_state <= "000010"; --s2
                     end if;
                 
                 when "000010" => --s2

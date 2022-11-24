@@ -19,8 +19,8 @@ end register_file;
 architecture bhave of register_file is
 type mem_array is array (0 to 7 ) of std_logic_vector (15 downto 0);
 signal registers: mem_array :=(
-    x"0000",x"0000", x"0000", x"0000",
-    x"0000",x"0000", x"0000", x"0000"
+    x"0000",x"FFFF", x"FFFF", x"FFFF",
+	x"FFFF",x"FFFF", x"FFFF", x"FFFF"
     );
 begin
     read_proc: process( reg_a1, reg_a2)

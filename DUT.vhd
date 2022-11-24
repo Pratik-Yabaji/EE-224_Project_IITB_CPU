@@ -9,14 +9,15 @@ end entity;
 
 architecture DutWrap of DUT is
     signal current_state: std_logic_vector(5 downto 0 ):="000001";
-	 signal next_state: std_logic_vector(5 downto 0 ):="000001";
-    signal current_ir,se_10_op, t1_op,ir_mem_data, t2_op, t3_op, pc_mem,s_op_7, reg_d3_s, alu_a_ip,alu_b_ip,reg_d1,reg_d2,data_out,t3_ip,ir_data, alu_pc, reg_out_d1:std_logic_vector(15 downto 0 );
+	signal next_state: std_logic_vector(5 downto 0 ):="000001";
+    signal se_10_op, t1_op,ir_mem_data, t2_op, t3_op, pc_mem,s_op_7, reg_d3_s, alu_a_ip,alu_b_ip,reg_d1,reg_d2,data_out,t3_ip,ir_data, alu_pc, reg_out_d1:std_logic_vector(15 downto 0 );
+--    signal current_ir:std_logic_vector(15 downto 0 );
     signal alu_ir: std_logic_vector(1 downto 0);
     signal clock: std_logic;
-	 signal reset: std_logic:='0';
+	signal reset: std_logic:='0';
     signal carry, zero: std_logic:='0';
     signal se_10: std_logic_vector(5 downto 0); 
-	 signal s_ip_7: std_logic_vector(8 downto 0);
+	signal s_ip_7: std_logic_vector(8 downto 0);
     signal reg_a1,reg_a2,reg_a3 :std_logic_vector(2 downto 0);
 
     component ir_setter is
@@ -191,17 +192,6 @@ begin
     output_vector(6) <= carry;
     output_vector(7) <= zero;
 
-    ins_ir_decoder:ir_decoder
-        port map(
-			next_state => next_state,
-            current_state => current_state,
-            op_code => current_ir(15 downto 12),
-            cz => current_ir(1 downto 0),
-            imm => current_ir(8 downto 0),
-            carry => carry,
-            zero => zero
-        );
-
     ins_ir_setter:ir_setter
         port map(
             reset => reset,
@@ -209,13 +199,23 @@ begin
             next_state => next_state,
             current_state => current_state  
         );
+    
+    ins_ir_decoder:ir_decoder
+        port map(
+			next_state => next_state,
+            current_state => current_state,
+            op_code => ir_mem_data(15 downto 12),
+            cz => ir_mem_data(1 downto 0),
+            imm => ir_mem_data(8 downto 0),
+            carry => carry,
+            zero => zero
+        );
 
     ins_memory:memory
         port map(
             t3_addr => t3_op,
             t2_data => t2_op,
             t1_addr => t1_op,
-            -- t1_data => t1_data;
             ir_addr => pc_mem,
             ir_data => ir_mem_data,
             data_out => data_out,

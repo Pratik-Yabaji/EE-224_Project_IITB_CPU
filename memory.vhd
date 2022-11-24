@@ -32,7 +32,7 @@ architecture bhave of memory is
 	
 	
 	signal mem_ir: mem_array := (
-	b"0000000011110101", x"FFFF", x"FFFF", x"0000",
+	b"0001000011110101", x"FFFF", x"FFFF", x"0000",
 	x"FFFF",x"0000", x"0000", x"0000",
 	x"0000",x"0000", x"0000", x"0000",
 	x"0000",x"0000", x"0000", x"0000",
